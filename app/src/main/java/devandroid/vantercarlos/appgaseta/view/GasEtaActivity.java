@@ -12,9 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import devandroid.vantercarlos.appgaseta.R;
 import devandroid.vantercarlos.appgaseta.apoio.UtilGasEta;
+import devandroid.vantercarlos.appgaseta.model.Combustivel;
 
 public class GasEtaActivity extends AppCompatActivity {
 
+    Combustivel combustivelGasolina;
+    Combustivel combustivelEtanol;
     EditText editGasolina;
     EditText editEtanol;
     TextView txtResultado;
@@ -77,7 +80,19 @@ public class GasEtaActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                combustivelGasolina = new Combustivel();
+                combustivelEtanol = new Combustivel();
 
+                combustivelGasolina.setNomeDoCombustivel("Gasolina");
+                combustivelGasolina.setPrecoDoCombustivel(precoGasolina);
+
+                combustivelEtanol.setNomeDoCombustivel("Etanol");
+                combustivelEtanol.setPrecoDoCombustivel(precoEtanol);
+
+                combustivelGasolina.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
+                combustivelEtanol.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
+
+                int parada = 0;
             }
         });
 
